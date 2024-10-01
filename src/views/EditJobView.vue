@@ -4,6 +4,7 @@ import { reactive, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import axios from 'axios';
+const BASEURL = import.meta.env.VITE_TEST_VAR;
 
 const route = useRoute();
 
@@ -46,7 +47,7 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
+    const response = await axios.put(`${BASEURL}/jobs/${jobId}`, updatedJob);
     toast.success('Job Updated Successfully');
     router.push(`/jobs/${response.data.id}`);
   } catch (error) {
@@ -57,7 +58,7 @@ const handleSubmit = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`/api/jobs/${jobId}`);
+    const response = await axios.get(`${BASEURL}/jobs/${jobId}`);
     state.job = response.data;
     // Populate inputs
     form.type = state.job.type;
