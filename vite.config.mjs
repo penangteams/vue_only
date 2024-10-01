@@ -20,16 +20,8 @@ export default defineConfig({
         })
     ],
     server: {
-        // host: '0.0.0.0',
-        port: 3000,
-        proxy: {
-            '/api': {
-                //target: 'http://localhost:8000',
-                target: 'https://my-json-server.typicode.com/penangteams/jsonserver',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, '')
-            }
-        }
+        host: '0.0.0.0',
+        port: 3005
     },
     resolve: {
         alias: {
