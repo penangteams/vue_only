@@ -1,0 +1,11 @@
+{
+    "apps" : [
+      {
+        "name"      : "vite_vue_only",
+        "script"    : "npx",
+        "interpreter": "none",
+        "args": "serve -s dist -p 3005"
+      }
+    ]
+  }
+
