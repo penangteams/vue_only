@@ -5,7 +5,6 @@ import { reactive, onMounted } from "vue";
 import { useRoute, RouterLink, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import axios from "axios";
-const BASEURL = import.meta.env.VITE_TEST_VAR;
 
 const route = useRoute();
 const router = useRouter();
@@ -17,12 +16,14 @@ const state = reactive({
   job: {},
   isLoading: true,
 });
-
+const myurl = reactive({
+ BASEURL : import.meta.env.VITE_BASE_URL,
+});
 const deleteJob = async () => {
   try {
     const confirm = window.confirm("Are you sure you want to delete this job?");
     if (confirm) {
-      await axios.delete(`${BASEURL}/jobs/${jobId}`);
+      await axios.delete(`${myurl.BASEURL}/jobs/${jobId}`);
       toast.success("Job Deleted Successfully");
       router.push("/jobs");
     }
@@ -34,7 +35,7 @@ const deleteJob = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`${BASEURL}/jobs/${jobId}`);
+    const response = await axios.get(`${myurl.BASEURL}/jobs/${jobId}`);
     state.job = response.data;
   } catch (error) {
     console.error("Error fetching job", error);

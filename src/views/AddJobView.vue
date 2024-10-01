@@ -3,7 +3,7 @@ import router from '@/router';
 import { reactive } from 'vue';
 import { useToast } from 'vue-toastification';
 import axios from 'axios';
-const BASEURL = import.meta.env.VITE_TEST_VAR;
+
 
 const form = reactive({
   type: 'Full-Time',
@@ -16,7 +16,12 @@ const form = reactive({
     description: '',
     contactEmail: '',
     contactPhone: '',
+    
   },
+});
+
+const myurl = reactive({
+ BASEURL : import.meta.env.VITE_BASE_URL,
 });
 
 const toast = useToast();
@@ -37,7 +42,7 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await axios.post(BASEURL +'jobs', newJob);
+    const response = await axios.post(myurl.BASEURL +'jobs', newJob);
     toast.success('Job Added Successfully');
     router.push(`/jobs/${response.data.id}`);
   } catch (error) {
