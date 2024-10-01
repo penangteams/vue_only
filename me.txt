@@ -1,0 +1,2 @@
+json-server root from github
+https://medium.com/@george-okumu/how-to-deploy-your-json-server-db-json-cbad15b1c8f0
